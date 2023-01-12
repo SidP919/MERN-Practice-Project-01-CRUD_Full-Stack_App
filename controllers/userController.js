@@ -81,4 +81,23 @@ async function editUser(req,res){
     }
     
 }
-module.exports = {home, createUser, getUsers, editUser};
+
+async function deleteUser(req,res){
+    try {
+        const deletedUser = await User.findByIdAndDelete(req.params.id);
+        if(!deletedUser)
+            throw new Error(`No user exists with given id=${req.params.id}!`);
+        res.status(200).json({
+            success:true,
+            message:"User data has been deleted successfully.",
+            deletedUser,
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            success:false,
+            message: error.message,
+        })
+    }
+}
+module.exports = {home, createUser, getUsers, editUser, deleteUser};
