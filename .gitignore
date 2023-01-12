@@ -1,8 +1,8 @@
 # environment files
-.env
+fullstack-app-backend/.env
 
 # sensitive files
-package-lock.json
+fullstack-app-backend/package-lock.json
 
 # packages' files
-/node_modules
+fullstack-app-backend/node_modules

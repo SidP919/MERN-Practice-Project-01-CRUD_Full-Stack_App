@@ -9,7 +9,7 @@ require("./config/mongodb_connect").connect();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
-// import & use userRoutes
+// import & use userRoutes like /createUser , /getUsers , /editUser , /deleteUser 
 const userRoutes = require("./routes/userRoutes");
 app.use(userRoutes);
 
