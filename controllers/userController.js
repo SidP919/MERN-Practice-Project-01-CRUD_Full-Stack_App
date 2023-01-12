@@ -35,4 +35,25 @@ async function createUser(req,res){
     }
 }
 
-module.exports = {home, createUser};
+async function getUsers(req,res){
+    try {    
+        const allUsers = await User.find();
+        let responseMsg = "User list exists.";
+        if(!allUsers.length){
+            responseMsg = "User list is empty!";
+        }
+        res.status(200).json({
+            success:true,
+            message:responseMsg,
+            allUsers,
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(403).json({
+            success:false,
+            message:error.message,
+        })
+    }
+}
+
+module.exports = {home, createUser, getUsers};
