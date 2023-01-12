@@ -56,4 +56,29 @@ async function getUsers(req,res){
     }
 }
 
-module.exports = {home, createUser, getUsers};
+async function editUser(req,res){
+    try {
+        const {name, email} = req.body;
+        if(!(name || email)){
+            throw new Error(`Nothing to update! Because both name & email are either empty or were not sent properly!`)
+        }
+        const currentUser = await User.findByIdAndUpdate(req.params.id, 
+            req.body); // or // {name, email});
+        if(!currentUser)
+            throw new Error(`No user exists with given id=${req.params.id}!`);
+        const updatedUser = await User.findById(req.params.id);
+        res.status(200).json({
+            success:true,
+            message:"User data has been updated successfully.",
+            updatedUser,
+        })
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({
+            success:false,
+            message: error.message,
+        })
+    }
+    
+}
+module.exports = {home, createUser, getUsers, editUser};
