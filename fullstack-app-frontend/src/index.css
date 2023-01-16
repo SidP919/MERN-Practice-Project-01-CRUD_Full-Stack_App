@@ -8,6 +8,7 @@ body {
   /* below two are custom styles: */
   background-color: #67e8f9;
   min-height: 100vh;
+  min-width: 360px;
 }
 
 code {
