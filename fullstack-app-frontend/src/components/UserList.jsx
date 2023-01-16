@@ -2,34 +2,75 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react'
 
 export const UserList = () => {
-  const [userListData, setUserListData] = useState(null);
+  const [userListData, setUserListData] = useState([]);
 
   const fetchUserListData = async () => {
-    const userListResp = await axios.get("/getUsers")
-    .catch((error) => {
-      console.log(error);
-    })
-    if(userListResp.data.allUsers.length>0){
-      setUserListData(userListResp.data.allUsers);
+    try {
+      const userListResp = await axios.get("/getUsers")
+      .catch((error) => {
+        console.log(error);
+      })
+      if(userListResp.data.allUsers.length>0){
+        setUserListData(userListResp.data.allUsers);
+      }else{
+        setUserListData([]);
+      }
+    } catch (error) {
+      console.log(error)
     }
   }
 
   useEffect(() => {
-    fetchUserListData();
-  }, [])
+      fetchUserListData();
+    }, [userListData] // useEffect executes whenever userListData changes i.e. when we create, update or delete a user from our user list.
+  )
+  
+  // edit user data
+  const editUserData = async (userId) => {
+    try {
+      const userName = prompt("Enter a name to update");
+      const userEmail = prompt("Enter an Email to update");
+      
+      if(!(userName && userEmail)){
+        alert("Please enter both name & email");
+      }else{
+        const editUserResp = await axios.put(`/editUser/${userId}`,{
+          name: userName,
+          email: userEmail,
+        }).catch(error => {alert(error.message)})
+        console.log(editUserResp.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // delete user
+  const deleteUserData = async (userId) => {
+    try {
+      const confirmDelete = window.confirm("Please click OK to confirm and delete the selected user");
+      if(confirmDelete){
+        const deleteUserResp = await axios.delete(`/deleteUser/${userId}`)
+        .catch(error => alert(error.message));
+        console.log(deleteUserResp.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   
   return (
     <div className='w-full lg:w-4/5 mx-auto'>
       <div className="container p-2 mx-auto sm:p-4 text-white">
-        <div className="flex flex-col text-center w-full mb-6">
-            <h1 className="text-xl sm:text-3xl md:text-5xl font-bold title-font underline underline-offset-4">All Users</h1>
+        <div className="flex flex-col text-center w-full mb-3 md:mb-6">
+            <h1 className="text-xl sm:text-3xl md:text-5xl font-bold title-font underline underline-offset-4">User List</h1>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full p-6 text-xs text-left whitespace-nowrap">
             {/* UserList Header */}
-            {userListData?(
+            {userListData.length?(
               <thead>
-                <tr className="bg-white text-cyan-300 text-sm md:text-lg">
+                <tr className="bg-white text-cyan-300 text-xs md:text-lg">
                   <th className="py-3 px-1 text-center hidden md:table-cell">
                     <font style={{verticalAlign: "inherit"}}>
                       <font style={{verticalAlign: "inherit"}}>Sr. No.</font>
@@ -58,12 +99,12 @@ export const UserList = () => {
                 </tr>
               </thead>
             ):(
-              <thead className='bg-white text-cyan-300 text-sm md:text-lg text-center p-2 rounded'>
+              <thead className='bg-white text-cyan-300 text-xs md:text-lg text-center p-2 rounded'>
                 <tr><td>No User exists. Please try adding one by filling above form.</td></tr>
               </thead>
             )}
             {/* User Items are shown if userListData is not empty*/}
-            {userListData?(
+            {userListData.length?(
               userListData.map((user,index) => (
                 <tbody className="border-b bg-cyan-300 border-white text-xs md:text-base" key={user._id}>
                   <tr>
@@ -79,7 +120,7 @@ export const UserList = () => {
                         </font>
                       </p>
                     </td>
-                    <td className="px-2 py-2 text-center">
+                    <td className="px-1 md:px-2 py-2 text-center">
                       <span>
                         <font style={{verticalAlign: "inherit"}}>
                           <font style={{verticalAlign: "inherit"}}>{user.email}</font>
@@ -88,12 +129,12 @@ export const UserList = () => {
                     </td>
                     <td className="px-2 py-2">
                       <div className="p-2 w-full">
-                        <button type='button' className="flex mx-auto bg-white text-cyan-300 border-2 py-2 px-4 md:px-8 focus:outline-none hover:bg-cyan-300 hover:border-white hover:text-white rounded text-xs md:text-base">Edit</button>
+                        <button type='button' className="flex mx-auto bg-white text-cyan-300 border-2 py-2 px-2 md:px-8 focus:outline-none hover:bg-cyan-300 hover:border-white hover:text-white rounded text-xs md:text-base" onClick={() => editUserData(user._id)}>Edit</button>
                       </div>
                     </td>
                     <td className="px-2 py-2">
                       <div className="p-2 w-full">
-                        <button type='button' className="flex mx-auto bg-white text-cyan-300 border-2 py-2 px-4 md:px-8 focus:outline-none hover:bg-cyan-300 hover:border-white hover:text-white rounded text-xs md:text-base">Delete</button>
+                        <button type='button' className="flex mx-auto bg-white text-cyan-300 border-2 py-2 px-2 md:px-8 focus:outline-none hover:bg-cyan-300 hover:border-white hover:text-white rounded text-xs md:text-base" onClick={() => deleteUserData(user._id)}>Delete</button>
                       </div>
                     </td>
                   </tr>
