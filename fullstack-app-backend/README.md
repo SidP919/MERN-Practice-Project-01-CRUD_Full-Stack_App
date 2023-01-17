@@ -2,6 +2,26 @@
 
 This is the backend directory of our CRUD-Full-Stack-Application where we can find the code files & commits' details related to the backend part of this CRUD-Full-Stack-Application.
 
+## **List of Contents**
+
+1. [Code Walkthrough & Commits( to make the code easy to understand)](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#code-walkthrough--commits-to-make-the-code-easy-to-understand)
+
+1. [Tech Stack used](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#tech-stack-used)
+
+1. [Instructions to run this application successfully on our local system](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#please-follow-below-instructions-to-run-this-application-successfully-on-our-local-system)
+
+1. [Special Notes: Intro to Postman](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#special-notes-intro-to-postman)
+
+    - [About Postman](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#about-postman)
+
+    - [Create Collection in Postman](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#create-collection-in-postman)
+
+    - [POST/PUT Request in Postman](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#postput-request-in-postman)
+
+    - [Environment Variables in Postman](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#environment-variables-in-postman)
+
+#
+
 ## **Code Walkthrough & Commits( to make the code easy to understand)**
 
 We can go through below commits to understand various parts/concepts of our backend code:
@@ -46,6 +66,7 @@ We can go through below commits to understand various parts/concepts of our back
 
     1. Create/Login to your MongoDB Atlas account, Create a Project and a Cluster, then get the **MongoDB Compass Connection String** under **Deployment > Database > Connect** 
 
+[🔼 Back to top](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#crud-applications-backend-using-nodejs)
 #
 
 ## **Please follow below instructions to run this application successfully on our local system:**
@@ -71,6 +92,7 @@ We can go through below commits to understand various parts/concepts of our back
 
     **NOTE:** If you want to test the whole Fullstack app on your localhost, then please note that we need to have both the frontend & backend applications running at the same time but separately on separate Terminal windows and Ports(in our case, Port:3000 for Frontend & Port:4000 for Backend).
 
+[🔼 Back to top](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#crud-applications-backend-using-nodejs)
 #  
 
 ## Special Notes: **Intro to Postman**
@@ -122,6 +144,7 @@ We can go through below commits to understand various parts/concepts of our back
 
 Thanks for the read👍
 
+[🔼 Back to top](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#crud-applications-backend-using-nodejs)
 #
 
 Developed By:
