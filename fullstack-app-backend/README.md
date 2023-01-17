@@ -77,44 +77,46 @@ We can go through below commits to understand various parts/concepts of our back
 
 ### **About Postman** 
     
-    Postman is an API platform for building and using APIs. Postman simplifies each step of the API lifecycle and streamlines collaboration so you can create better APIs—faster.
+   > Postman is an API platform for building and using APIs. Postman simplifies each step of the API lifecycle and streamlines collaboration so you can create better APIs—faster.
 
 ### **Create Collection in Postman**
 
-    Click on collections icon > click on + icon > give a name to new collection > Hover over the new collection name and click on ... icon > select "New Request" > Give a name to this New Request( like Home, Dashboard, etc.) > Select the Request type( like GET, POST, PUT, DELETE, etc) > Give a link/route to this New Request( like http://localhost:3000/dashboard) > Click on Save to add this Request to our collection for future purposes. 
+   > Click on collections icon > click on + icon > give a name to new collection > Hover over the new collection name and click on ... icon > select "New Request" > Give a name to this New Request( like Home, Dashboard, etc.) > Select the Request type( like GET, POST, PUT, DELETE, etc) > Give a link/route to this New Request( like http://localhost:3000/dashboard) > Click on Save to add this Request to our collection for future purposes. 
 
     
-    Similarly, we can create other Requests under our collection for each route of our backend application.
+   > Similarly, we can create other Requests under our collection for each route of our backend application.
     
-    Note that: 
-        1> If our request type is GET we can simply click on SEND to get the response from our backend application. 
-        
-        2> If it is DELETE we can provide the PARAMS(like userID, productID, etc) at the end of our link/route 
+   > Note that if our request type is GET we can simply click on SEND to get the response from our backend application. 
+   
+   > Note that if our request type is DELETE we can provide the PARAMS(like userID, productID, etc) at the end of our link/route 
 
-        3> But, if our request type is POST/PUT then please read below topic.
+   > But, if our request type is POST/PUT then please read below sub-topic.
 
 ### **POST/PUT Request in Postman**
 
-    In case the Request Type is POST/PUT, then we may need to provide some info( like email & password for login as an example) in body of the Request, and for that, in our case, we need to provide this required info in json format by clicking on the Request's Name under the Collection Name, then below the Request URL, click on Body section > then select raw > then from the drop-down, select JSON, and provide JSON data for our Request in the input-text-box below it. 
-    
-    Example of JSON data( notice both key and value are within double-quotes):
-    
+   > In case the Request Type is POST/PUT, then we may need to provide some info( like email & password for login as an example) in body of the Request, and for that, in our case, we need to provide this required info in json format by clicking on the Request's Name under the Collection Name, then below the Request URL, click on Body section > then select raw > then from the drop-down, select JSON, and provide JSON data for our Request in the input-text-box below it. 
+
+   > Example of JSON data( notice both key and value are within double-quotes):
+   
+```JSON
     {
         "email":"sidp0008@google.com",
         "password":"XXXXXXXXXX"
     }
+```
 
 ### **Environment Variables in Postman**
 
-    Click on Environment > Click on + icon to create an Environment > Give a name to New Environment > Add Environment Variables in table below it
+   > Click on Environment > Click on + icon to create an Environment > Give a name to New Environment > Add Environment Variables in table below it
 
-    Example: 
-    ---------
+   >**Example:**
     Add a Environment variable > Name it "SITE" > then give it initial value as some URL of your App, like your base URL http://localhost:3000
-    Now, to use this environment variable SITE that we have created, you can go to any Request page under any Collection which you have created earlier and then under Request URL field, 
-    you can type {{SITE}} in place of typing http://localhost:3000 
-    Similarly, in place of http://localhost:3000/dashboard, you can type {{SITE}}/dashboard and both will do the same job for you.
-    So, in this way, you can make use of these environment variables to make your testing more efficient.
+
+   > Now, to use this environment variable **SITE** that we have created, you can go to any Request page under any Collection which you have created earlier and then under Request URL field, you can type **{{SITE}}** in place of typing http://localhost:3000 
+   
+   > Similarly, in place of http://localhost:3000/dashboard, you can type **{{SITE}}/dashboard** and both will do the same job for you.
+
+   > So, in this way, you can make use of these environment variables to make your testing these APIs more efficient.
 
 #
 
