@@ -6,7 +6,7 @@ export const Form = () => {
     const [userName, setUserName] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [backendRespMsg, setBackendRespMsg] = useState("");
-
+    
     // To get the data from Form and send it to backend to save it in DB
     const submitUserData = async () => {
         if(userName && userEmail){
@@ -16,10 +16,11 @@ export const Form = () => {
             }
             const userResponse = await axios.post("/createUser", data)
             .catch(error => {
-                setBackendRespMsg(error.response.data);
+                setBackendRespMsg(error.message);
                 console.log(error);
             });
-            setBackendRespMsg(userResponse.data.message);
+            if(userResponse && userResponse.data && userResponse.data.message)
+                setBackendRespMsg(userResponse.data.message);
         }else{
             setBackendRespMsg("Name and Email cannot be empty! Please fill them and try again.")
         }

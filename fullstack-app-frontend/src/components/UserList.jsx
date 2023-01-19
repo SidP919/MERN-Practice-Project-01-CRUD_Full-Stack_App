@@ -10,10 +10,12 @@ export const UserList = () => {
       .catch((error) => {
         console.log(error);
       })
-      if(userListResp.data.allUsers.length>0){
-        setUserListData(userListResp.data.allUsers);
-      }else{
-        setUserListData([]);
+      if(userListResp && userListResp.data && userListResp.data.allUsers){
+        if(userListResp.data.allUsers.length>0){
+          setUserListData(userListResp.data.allUsers);
+        }else{
+          setUserListData([]);
+        }
       }
     } catch (error) {
       console.log(error)
@@ -21,9 +23,9 @@ export const UserList = () => {
   }
 
   useEffect(() => {
-      fetchUserListData();
-    }, [userListData] // useEffect executes whenever userListData changes i.e. when we create, update or delete a user from our user list.
-  )
+    fetchUserListData();
+  }, [userListData] // useEffect executes whenever userListData changes i.e. when we create, update or delete a user from our user list.
+)
   
   // edit user data
   const editUserData = async (userId) => {
