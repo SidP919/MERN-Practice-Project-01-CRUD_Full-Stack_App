@@ -2,6 +2,12 @@
 
 A Simple Full-Stack-App with CRUD functionalities that can be used to understand the basic architecture, file-structure and flow of execution in a Full-Stack-Web-App.
 
+**CRUD Full-Stack Application - [Live Link](https://user-list-frontend.netlify.app/)**
+
+***
+
+## **Frontend & Backend of our CRUD Full-Stack Application**
+
 Like any other full-stack app, this application has two parts:
 
 ## **1. Frontend**

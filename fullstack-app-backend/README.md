@@ -2,7 +2,11 @@
 
 This is the backend directory of our CRUD-Full-Stack-Application where we can find the code files & commits' details related to the backend part of this CRUD-Full-Stack-Application.
 
+***
+
 ## **List of Contents**
+
+1. [Use/Test our Backend API](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#usetest-our-backend-api)
 
 1. [Code Walkthrough & Commits( to make the code easy to understand)](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#code-walkthrough--commits-to-make-the-code-easy-to-understand)
 
@@ -20,7 +24,37 @@ This is the backend directory of our CRUD-Full-Stack-Application where we can fi
 
     - [Environment Variables in Postman](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#environment-variables-in-postman)
 
-#
+***
+
+## **Use/Test our Backend API**
+
+In case you directly want to test/use our Backend API, then use below url/routes to get various kinds of responses based on the type of route: 
+
+1. To get all users' data in response in JSON format:
+
+    - Request URL: [user-list-backend.up.railway.app/getUsers](https://user-list-backend.up.railway.app/getUsers)
+    - Request Type: GET
+
+1. To create a User and get success response in JSON format
+
+    - Request URL: [user-list-backend.up.railway.app/createUser](https://user-list-backend.up.railway.app/createUser)
+    - Request Type: POST
+
+1. To edit any User's info and get success response in JSON format 
+
+    - Request URL: [user-list-backend.up.railway.app/editUser/<user's _id comes here>](https://user-list-backend.up.railway.app/editUser/id)
+    - Request Type: PUT
+
+1. To delete any User's info and get success response in JSON format 
+
+    - Request URL: [user-list-backend.up.railway.app/deleteUser/<user's _id comes here>](https://user-list-backend.up.railway.app/deleteUser/id)
+    - Request Type: DELETE
+
+**NOTE 1:** Please note that ***/createUser*** and ***/editUser*** are POST & PUT requests respectively, hence you will also need to provide user's data(name & email) in body of the request. For this purpose, you can use **Postman**( [Check here](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#create-collection-in-postman) and [here](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#postput-request-in-postman) for more details)
+
+**NOTE 2:** You can find **_id** of any user from the response of **[/getUsers](https://user-list-backend.up.railway.app/getUsers)** response and use it in **/editUser/_id** and **/deleteUser/_id** requests to edit and delete any user's info.
+
+***
 
 ## **Code Walkthrough & Commits( to make the code easy to understand)**
 
@@ -34,7 +68,7 @@ We can go through below commits to understand various parts/concepts of our back
 
 1. Part-04: D in CRUD- "Delete" a record from DB [Click to see the Code changes](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/commit/3e24f9bb83e0647cf313fc7b8f8252410178746f)
 
-#
+***
 
 ## **Tech Stack used:**
 
@@ -67,7 +101,8 @@ We can go through below commits to understand various parts/concepts of our back
     1. Create/Login to your MongoDB Atlas account, Create a Project and a Cluster, then get the **MongoDB Compass Connection String** under **Deployment > Database > Connect** 
 
 [🔼 Back to top](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#crud-applications-backend-using-nodejs)
-#
+
+***
 
 ## **Please follow below instructions to run this application successfully on our local system:**
 
@@ -93,7 +128,8 @@ We can go through below commits to understand various parts/concepts of our back
     **NOTE:** If you want to test the whole Fullstack app on your localhost, then please note that we need to have both the frontend & backend applications running at the same time but separately on separate Terminal windows and Ports(in our case, Port:3000 for Frontend & Port:4000 for Backend).
 
 [🔼 Back to top](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#crud-applications-backend-using-nodejs)
-#  
+
+***
 
 ## Special Notes: **Intro to Postman**
 
