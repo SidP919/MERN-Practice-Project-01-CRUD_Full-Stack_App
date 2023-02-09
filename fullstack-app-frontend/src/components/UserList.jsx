@@ -1,32 +1,16 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
+import Context from '../services/userListData/Context';
 
 export const UserList = () => {
-  const [userListData, setUserListData] = useState([]);
+  const userListData = useContext(Context).data;
 
-  const fetchUserListData = async () => {
-    try {
-      const userListResp = await axios.get("/getUsers")
-      .catch((error) => {
-        console.log(error);
-      })
-      if(userListResp && userListResp.data && userListResp.data.allUsers){
-        if(userListResp.data.allUsers.length>0){
-          setUserListData(userListResp.data.allUsers);
-        }else{
-          setUserListData([]);
-        }
-      }
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  const {fetchUserListData} = useContext(Context);
 
   useEffect(() => {
     fetchUserListData();
-  }, [userListData] // useEffect executes whenever userListData changes i.e. when we create, update or delete a user from our user list.
-)
-  
+  }, [fetchUserListData])
+
   // edit user data
   const editUserData = async (userId) => {
     try {
@@ -39,8 +23,13 @@ export const UserList = () => {
         const editUserResp = await axios.put(`/editUser/${userId}`,{
           name: userName,
           email: userEmail,
-        }).catch(error => {alert(error.message)})
-        console.log(editUserResp.data);
+        })
+        .then((resp)=>{
+          fetchUserListData();
+          return resp;
+        })
+        .catch(error => {alert(error.message)})
+          console.log(editUserResp.data);
       }
     } catch (error) {
       console.log(error);
@@ -53,6 +42,10 @@ export const UserList = () => {
       const confirmDelete = window.confirm("Please click OK to confirm and delete the selected user");
       if(confirmDelete){
         const deleteUserResp = await axios.delete(`/deleteUser/${userId}`)
+        .then((resp)=>{
+          fetchUserListData();
+          return resp;
+        })
         .catch(error => alert(error.message));
         console.log(deleteUserResp.data);
       }
@@ -70,7 +63,7 @@ export const UserList = () => {
         <div className="overflow-x-auto">
           <table className="w-full p-6 text-xs text-left whitespace-nowrap">
             {/* UserList Header */}
-            {userListData.length?(
+            {(userListData && userListData.length)?(
               <thead>
                 <tr className="bg-white text-cyan-300 text-xs md:text-lg">
                   <th className="py-3 px-1 text-center hidden md:table-cell">
@@ -106,7 +99,7 @@ export const UserList = () => {
               </thead>
             )}
             {/* User Items are shown if userListData is not empty*/}
-            {userListData.length?(
+            {(userListData && userListData.length)?(
               userListData.map((user,index) => (
                 <tbody className="border-b bg-cyan-300 border-white text-xs md:text-base" key={user._id}>
                   <tr>

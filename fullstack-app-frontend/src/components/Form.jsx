@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import Context from '../services/userListData/Context';
+import { useContext } from 'react';
 
 export const Form = () => {
 
     const [userName, setUserName] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [backendRespMsg, setBackendRespMsg] = useState("");
+    const {fetchUserListData} = useContext(Context);
     
     // To get the data from Form and send it to backend to save it in DB
     const submitUserData = async () => {
@@ -16,6 +19,10 @@ export const Form = () => {
                     email: userEmail,
                 }
                 const userResponse = await axios.post("/createUser", data)
+                .then((resp)=>{
+                    fetchUserListData();
+                    return resp;
+                })
                 .catch(error => {
                     if(error.response && error.response.data)
                         setBackendRespMsg(error.response.data);
