@@ -1,6 +1,6 @@
 # Redirects
-/getUsers https://user-list-backend.up.railway.app/getUsers 200
-/createUser https://user-list-backend.up.railway.app/createUser 201
-/editUser/* https://user-list-backend.up.railway.app/editUser/:splat 204
-/deleteUser/* https://user-list-backend.up.railway.app/deleteUser/:splat 204
+/getUsers https://user-list-backend.onrender.com/getUsers 200
+/createUser https://user-list-backend.onrender.com/createUser 201
+/editUser/* https://user-list-backend.onrender.com/editUser/:splat 204
+/deleteUser/* https://user-list-backend.onrender.com/deleteUser/:splat 204
 /* /index.html 200
