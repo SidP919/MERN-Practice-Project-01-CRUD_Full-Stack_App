@@ -32,27 +32,27 @@ In case you directly want to test/use our Backend API, then use below url/routes
 
 1. To get all users' data in response in JSON format:
 
-    - Request URL: [user-list-backend.up.railway.app/getUsers](https://user-list-backend.up.railway.app/getUsers)
+    - Request URL: [https://user-list-backend.onrender.com/getUsers](https://user-list-backend.onrender.com/getUsers)
     - Request Type: GET
 
 1. To create a User and get success response in JSON format
 
-    - Request URL: [user-list-backend.up.railway.app/createUser](https://user-list-backend.up.railway.app/createUser)
+    - Request URL: [https://user-list-backend.onrender.com/createUser](https://user-list-backend.onrender.com/createUser)
     - Request Type: POST
 
 1. To edit any User's info and get success response in JSON format 
 
-    - Request URL: [user-list-backend.up.railway.app/editUser/<user's _id comes here>](https://user-list-backend.up.railway.app/editUser/id)
+    - Request URL: [https://user-list-backend.onrender.com/editUser/<user's _id comes here>](https://user-list-backend.onrender.com/editUser/id)
     - Request Type: PUT
 
 1. To delete any User's info and get success response in JSON format 
 
-    - Request URL: [user-list-backend.up.railway.app/deleteUser/<user's _id comes here>](https://user-list-backend.up.railway.app/deleteUser/id)
+    - Request URL: [https://user-list-backend.onrender.com/deleteUser/<user's _id comes here>](https://user-list-backend.onrender.com/deleteUser/id)
     - Request Type: DELETE
 
 **NOTE 1:** Please note that ***/createUser*** and ***/editUser*** are POST & PUT requests respectively, hence you will also need to provide user's data(name & email) in body of the request. For this purpose, you can use **Postman**( [Check here](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#create-collection-in-postman) and [here](https://github.com/SidP919/MERN-Practice-Project-01-CRUD_Full-Stack_App/tree/Main/fullstack-app-backend#postput-request-in-postman) for more details)
 
-**NOTE 2:** You can find **_id** of any user from the response of **[/getUsers](https://user-list-backend.up.railway.app/getUsers)** response and use it in **/editUser/_id** and **/deleteUser/_id** requests to edit and delete any user's info.
+**NOTE 2:** For testing and playground purposes, you can find **_id** of any of the users currently registered from the response of **[/getUsers](https://user-list-backend.onrender.com/getUsers)** API call and use it in **/editUser/_id** and **/deleteUser/_id** requests to edit and delete any user's info.
 
 ***
 
