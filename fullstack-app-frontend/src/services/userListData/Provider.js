@@ -5,12 +5,14 @@ import PackageContext from './Context'
 const Provider = (props) => {
     
     const [userListData, setUserListData] = useState([])
+    const [userListLoading, setUserListLoading] = useState(false);
     
     return(
         <PackageContext.Provider value={{
             data:userListData,
             fetchUserListData: useCallback(async () => {
-              try {
+              try {                
+                setUserListLoading(true);
                 await axios.get("/getUsers")
                 .then((userListResp)=>{
                   if(userListResp && userListResp.data && userListResp.data.allUsers){
@@ -23,12 +25,16 @@ const Provider = (props) => {
                 })
                 .catch((error) => {
                   console.log(error);
+                  setUserListLoading(false);
                   throw error;
                 })
+                setUserListLoading(false);
               } catch (error) {
                 console.log(error)
               }
-          }, [])
+          }, []),
+          userListLoading:userListLoading,
+          setUserListLoading:(val)=>{setUserListLoading(val)}
         }}>
             {props.children}
         </PackageContext.Provider>

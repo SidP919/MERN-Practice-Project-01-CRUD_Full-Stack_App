@@ -1,11 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useContext } from 'react'
 import Context from '../services/userListData/Context';
+import {ThreeDots} from 'react-loader-spinner';
 
 export const UserList = () => {
   const userListData = useContext(Context).data;
 
-  const {fetchUserListData} = useContext(Context);
+  const {fetchUserListData,userListLoading,setUserListLoading} = useContext(Context);
 
   useEffect(() => {
     fetchUserListData();
@@ -16,8 +17,9 @@ export const UserList = () => {
     try {
       const userName = prompt("Enter a name to update");
       const userEmail = prompt("Enter an Email to update");
-      
+      setUserListLoading(true);
       if(!(userName && userEmail)){
+        setUserListLoading(false);
         alert("Please enter both name & email");
       }else{
         const editUserResp = await axios.put(`/editUser/${userId}`,{
@@ -28,8 +30,11 @@ export const UserList = () => {
           fetchUserListData();
           return resp;
         })
-        .catch(error => {alert(error.message)})
-          console.log(editUserResp.data);
+        .catch(error => {
+          setUserListLoading(false);
+          alert(error.message);
+        })
+        console.log(editUserResp.data);
       }
     } catch (error) {
       console.log(error);
@@ -40,14 +45,20 @@ export const UserList = () => {
   const deleteUserData = async (userId) => {
     try {
       const confirmDelete = window.confirm("Please click OK to confirm and delete the selected user");
+      setUserListLoading(true);
       if(confirmDelete){
         const deleteUserResp = await axios.delete(`/deleteUser/${userId}`)
         .then((resp)=>{
           fetchUserListData();
           return resp;
         })
-        .catch(error => alert(error.message));
+        .catch(error => {
+          setUserListLoading(false);
+          alert(error.message);
+        });
         console.log(deleteUserResp.data);
+      }else{
+        setUserListLoading(false);
       }
     } catch (error) {
       console.log(error);
@@ -63,7 +74,7 @@ export const UserList = () => {
         <div className="overflow-x-auto">
           <table className="w-full p-6 text-xs text-left whitespace-nowrap">
             {/* UserList Header */}
-            {(userListData && userListData.length)?(
+            {(userListData && userListData.length && !userListLoading)?(
               <thead>
                 <tr className="bg-white text-cyan-300 text-xs md:text-lg">
                   <th className="py-3 px-1 text-center hidden md:table-cell">
@@ -94,12 +105,27 @@ export const UserList = () => {
                 </tr>
               </thead>
             ):(
-              <thead className='bg-white text-cyan-300 text-xs md:text-lg text-center p-2 rounded'>
+              (userListLoading)?(
+                <thead
+                  style={{
+                    width: "100%",
+                    height: "100",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center"
+                  }}
+                >
+                  <tr><td><ThreeDots type="ThreeDots" color="#FFF" height="100" width="100" /></td></tr>
+                </thead>
+              ):
+              (
+                <thead className='bg-white text-cyan-300 text-xs md:text-lg text-center p-2 rounded'>
                 <tr><td>No User exists. Please try adding one by filling above form.</td></tr>
               </thead>
+              )
             )}
             {/* User Items are shown if userListData is not empty*/}
-            {(userListData && userListData.length)?(
+            {(userListData && userListData.length && !userListLoading)?(
               userListData.map((user,index) => (
                 <tbody className="border-b bg-cyan-300 border-white text-xs md:text-base" key={user._id}>
                   <tr>
